@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Расчет средней суммы</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Калькулятор среднего оборота</h1>
+
+    <div class="block">
+      <div class="form-group">
+        <label for="turnover">Необходимый средний оборот (₽)</label>
+        <input type="text" id="turnover" value="600 000" />
+      </div>
+      <div class="form-group">
+        <label for="penalty">Комиссия за неподдержание оборота (₽)</label>
+        <input type="text" id="penalty" value="1 490" />
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="form-group terminals-container" id="terminalsContainer"></div>
+      <button class="button" onclick="addTerminal()">Добавить терминал</button>
+    </div>
+
+    <div class="block results" id="results">
+      <a
+        href="#"
+        onclick="toggleFormulas(); return false;"
+        id="formulaToggleBtn"
+        class="link"
+      >
+        Показать формулы
+      </a>
+      <a
+        href="#"
+        onclick="toggleAllResults(); return false;"
+        id="allResultsToggleBtn"
+        class="link ml-20"
+      >
+        Показать все значения
+      </a>
+
+      <div class="result-block" style="margin-top: 20px">
+        <strong>Общий оборот клиента:</strong>
+        <span class="value" id="totalIncome">0</span> ₽
+        <span class="show-toggle" onclick="toggleValue('totalIncome')"
+          >Показать</span
+        ><br />
+        <span class="formula">= сумма доходов всех терминалов</span>
+      </div>
+
+      <div class="result-block">
+        <strong>Количество активных терминалов:</strong>
+        <span class="value" id="terminalCount">0</span>
+        <span class="show-toggle" onclick="toggleValue('terminalCount')"
+          >Показать</span
+        ><br />
+        <span class="formula">= общее количество активных терминалов</span>
+      </div>
+
+      <div class="result-block">
+        <strong>Средний оборот на один терминал:</strong>
+        <span class="value" id="averageIncome">0</span> ₽
+        <span class="show-toggle" onclick="toggleValue('averageIncome')"
+          >Показать</span
+        ><br />
+        <span class="formula"
+          >= общий оборот клиента / количество активных терминалов</span
+        >
+      </div>
+
+      <div class="result-block">
+        <strong>Комиссия за неподдержание оборота:</strong>
+        <span class="value" id="fineAmount">0</span> ₽
+        <span class="show-toggle" onclick="toggleValue('fineAmount')"
+          >Показать</span
+        ><br />
+        <span class="formula">
+          = сумма комиссии за неподдержание оборота × количество активных
+          терминалов (если средняя &lt; оборота)
+        </span>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
